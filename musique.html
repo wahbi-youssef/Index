@@ -4,33 +4,37 @@
     background-position: center; 
     min-height: 100vh; 
     display: flex; 
-    flex-wrap: wrap; 
-    align-content: flex-start; 
-    justify-content: center; 
+    flex-direction: column; /* ترتيب العناصر عمودياً */
+    align-items: center; 
+    justify-content: flex-start; 
     gap: 15px; 
     padding: 20px;
 ">
-
-   <body>
-
-    <h3 id="currentTitle">اختر أغنية</h3>
+    <h3 id="currentTitle" style="color: white; font-family: sans-serif;">اختر أغنية</h3>
     
- <audio id="player" controls autoplay style="zoom: 1.5; margin: 20px;"></audio>
-<div class="song-item" onclick="play('9','9.mp3')">9</div>
-<div class="song-item" onclick="play('7','7.mp3')">7</div>
-<script>
-function play(id, source) {
-    // الحصول على عنصر المشغل بواسطة الـ id
-    var player = document.getElementById('player');
-    
-    // تغيير مصدر الصوت إلى الملف المطلوب
-    player.src = source;
-    
-    // بدء التشغيل
-    player.play();
-}
-</script>
+    <audio id="player" controls style="zoom: 1.5; margin: 20px;"></audio>
 
-</body>   
+    <div style="display: flex; gap: 10px;">
+        <div class="song-item" onclick="play('أغنية 9','9.mp3')" style="cursor: pointer; padding: 10px; background: white; border-radius: 5px;">9</div>
+        <div class="song-item" onclick="play('أغنية 7','7.mp3')" style="cursor: pointer; padding: 10px; background: white; border-radius: 5px;">7</div>
+    </div>
 
+    <script>
+    function play(title, source) {
+        var player = document.getElementById('player');
+        var titleElement = document.getElementById('currentTitle');
+        
+        // تحديث العنوان
+        titleElement.innerText = "يعمل الآن: " + title;
+        
+        // تغيير المصدر
+        player.src = source;
+        
+        // تحميل الملف الجديد وتشغيله
+        player.load(); 
+        player.play().catch(function(error) {
+            console.log("التشغيل التلقائي محظور: يجب النقر على الصفحة أولاً.");
+        });
+    }
+    </script>
 </div>
