@@ -18,18 +18,14 @@
 <div class="song-item" onclick="play('7','7.mp3')">7</div>
 <div class="song-item" onclick="play('8','8.mp3')">8</div>
 <div class="song-item" onclick="play('7','7.mp3')">7</div>
-<script>
-function play(id, source) {
-    // الحصول على عنصر المشغل بواسطة الـ id
-    var player = document.getElementById('player');
-    
-    // تغيير مصدر الصوت إلى الملف المطلوب
-    player.src = source;
-    
-    // بدء التشغيل
-    player.play();
-}
-</script>
+ <script>
+        function play(name, url) {
+            document.getElementById('currentTitle').innerText = name;
+            const player = document.getElementById('player');
+            player.src = url;
+            player.play();
+        }
+ </script>
 
 </body>   
 
